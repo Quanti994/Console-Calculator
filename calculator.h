@@ -14,8 +14,8 @@ class calculator
         calculator();
         ~calculator();
         double calculate();
-        void enterNumber(std::istream& input);
-        void enterOperation(std::istream&input);
+        void enterNumber(double number);
+        void enterOperation(size_t numberOperation);
     private:
         double addNumbers();
         double subNumbers();
