@@ -13,13 +13,37 @@ int main()
     std::cout<<"4.Dzielenie\n";
     std::cout<<"5.WYJSCIE\n";
     std::cout<<"=================\n";
+
+    double number;
+    do{
+    std::cin.clear();
+    std::cin.sync();
     std::cout<<"Podaj pierwsza liczbe: ";
-    calc.enterNumber(std::cin);
+    std::cin >> number;
+    if(std::cin.fail()) std::cout<<"BLAD TRESCI!"<<std::endl;
+    }while(std::cin.fail());
+    calc.enterNumber(number);
+
+    size_t numberOperation;
+    do{
+    std::cin.clear();
+    std::cin.sync();
     std::cout<<"Wybierz operacje: ";
-    calc.enterOperation(std::cin);
+    std::cin >> numberOperation;
+    if(std::cin.fail()) std::cout<<"BLAD TRESCI!"<<std::endl;
+    }while(std::cin.fail());
+    calc.enterOperation(numberOperation);
+
+    do{
+    std::cin.clear();
+    std::cin.sync();
     std::cout<<"Podaj druga liczbe: ";
-    calc.enterNumber(std::cin);
-    std::cout<<"WYNIK = "<<calc.calculate()<<'\n';
+    std::cin >> number;
+    if(std::cin.fail()) std::cout<<"BLAD TRESCI!"<<std::endl;
+    }while(std::cin.fail());
+    calc.enterNumber(number);
+
+    std::cout<<"WYNIK = "<<calc.calculate();
 
     return 0;
 }
