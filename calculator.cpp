@@ -71,48 +71,29 @@ double calculator::calculate()
    }
 }
 
-void calculator::enterNumber(std::istream& input)
+void calculator::enterNumber(double number)
 {
-    char characters;
-    std::string strNumber;
-    strNumber.clear();
-    while(input.get(characters) && characters != '\n')
-    {
-        strNumber.push_back(characters);
-    }
-
-    double number = atof(strNumber.c_str());
-    numbers.push(number);
+   numbers.push(number);
 }
 
-void calculator::enterOperation(std::istream& input)
+void calculator::enterOperation(size_t numberOperation)
 {
-    char characters;
-    std::string strNumber;
-    strNumber.clear();
-    while(input.get(characters) && characters != '\n')
-    {
-        strNumber.push_back(characters);
-    }
-
-    int number = atof(strNumber.c_str());
-
-    switch(number)
-    {
-    case ADD:
-        operation = ADD;
-        break;
-    case SUB:
-        operation = SUB;
-        break;
-    case MULTI:
-        operation = MULTI;
-        break;
-    case DIVI:
-        operation = DIVI;
-        break;
-    case EXIT:
-        operation = EXIT;
-        break;
-    }
+    switch(numberOperation)
+   {
+   case ADD:
+      operation = ADD;
+      break;
+   case SUB:
+      operation = SUB;
+      break;
+   case MULTI:
+      operation = MULTI;
+      break;
+   case DIVI:
+      operation = DIVI;
+      break;
+   case EXIT:
+      exitCalculator();
+      break;
+   }
 }
