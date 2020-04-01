@@ -4,7 +4,8 @@
 
 calculator::calculator()
 {
-
+  numbers.push(0);
+  calculatorStatus = START;
 }
 
 calculator::~calculator()
@@ -44,29 +45,25 @@ double calculator::diviNumbers()
   return b/a;
 }
 
-void calculator::exitCalculator()
-{
-  exit(0);
-}
-
-double calculator::calculate()
+void calculator::calculate()
 {
    switch(operation)
    {
    case ADD:
-      return addNumbers();
+      numbers.push(addNumbers());
+      resetBufor();
       break;
    case SUB:
-      return subNumbers();
+       numbers.push(subNumbers());
+       resetBufor();
       break;
    case MULTI:
-      return multiNumbers();
+       numbers.push(multiNumbers());
+       resetBufor();
       break;
    case DIVI:
-      return diviNumbers();
-      break;
-   case EXIT:
-      exitCalculator();
+       numbers.push(diviNumbers());
+       resetBufor();
       break;
    }
 }
@@ -74,26 +71,56 @@ double calculator::calculate()
 void calculator::enterNumber(double number)
 {
    numbers.push(number);
+   calculatorBufor.push_back(std::to_string(number));
+   if(calculatorStatus==START) calculatorStatus= CHECK_OPERATION;
+   if(calculatorStatus==INTRODUCTION_NEXT_NUMBER) calculatorStatus= CHECK_OPERATION;
 }
 
 void calculator::enterOperation(size_t numberOperation)
 {
+    calculatorStatus = INTRODUCTION_NEXT_NUMBER;
     switch(numberOperation)
    {
    case ADD:
       operation = ADD;
+      calculatorBufor.push_back(" + ");
       break;
    case SUB:
       operation = SUB;
+      calculatorBufor.push_back(" - ");
       break;
    case MULTI:
       operation = MULTI;
+      calculatorBufor.push_back(" * ");
       break;
    case DIVI:
       operation = DIVI;
+      calculatorBufor.push_back(" / ");
       break;
    case EXIT:
-      exitCalculator();
+      exit(0);
       break;
    }
+}
+
+STATUS calculator::checkStatusCalculator()
+{
+    return calculatorStatus;
+}
+
+void calculator::resetBufor()
+{
+    calculatorBufor.clear();
+    calculatorBufor.push_back(std::to_string(numbers.top()));
+}
+
+std::ostream& operator<<(std::ostream& output,calculator &calc)
+{
+    for(size_t i=0;i<calc.calculatorBufor.size();i++)
+    {
+        output<<calc.calculatorBufor[i];
+    }
+    output<<'\n';
+
+    return output;
 }
