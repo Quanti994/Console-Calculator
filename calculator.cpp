@@ -20,7 +20,7 @@ double calculator::binary_operation(std::function<double(double, double)> const&
     numbers.pop();
     double b = numbers.top();
     numbers.pop();
-    return f(a,b);
+    return f(b,a);
 }
 
 void calculator::perform_operation(std::function<double(double, double)> const& f)
@@ -89,7 +89,7 @@ void calculator::enterOperation(size_t numberOperation)
       exit(0);
       break;
    case HISTORY:
-      void ShowHistoryOperation();
+      this->showHistoryOperation();
       break;
    }
 }
@@ -118,7 +118,7 @@ std::ostream& operator<<(std::ostream& output,calculator &calc)
 
 void calculator::showHistoryOperation()
 {
-    clearConsole();
+   clearConsole();
 
     for(size_t i=0;i<historyOperation.size();i++)
     {
@@ -127,4 +127,5 @@ void calculator::showHistoryOperation()
     }
     std::cout<<'\n';
     std::cout<<"Aby powrocic nacisnij dowolny przycisk..."<<std::endl;
+    enterKey();
 }
