@@ -14,69 +14,39 @@ calculator::~calculator()
     //dtor
 }
 
-double calculator::addNumbers()
+double calculator::binary_operation(std::function<double(double, double)> const& f)
 {
-  double a = numbers.top();
-  numbers.pop();
-  double b = numbers.top();
-  return a+b;
+    double a = numbers.top();
+    numbers.pop();
+    double b = numbers.top();
+    numbers.pop();
+    return f(a,b);
 }
 
-double calculator::subNumbers()
+void calculator::perform_operation(std::function<double(double, double)> const& f)
 {
-  double a = numbers.top();
-  numbers.pop();
-  double b = numbers.top();
-  return b-a;
-}
-
-double calculator::multiNumbers()
-{
-  double a = numbers.top();
-  numbers.pop();
-  double b = numbers.top();
-  return a*b;
-}
-
-double calculator::diviNumbers()
-{
-  double a = numbers.top();
-  numbers.pop();
-  double b = numbers.top();
-  return b/a;
+      numbers.push(binary_operation(f));
+      historyOperation.push_back(" = ");
+      historyOperation.push_back(std::to_string(numbers.top()));
+      historyOperation.push_back(std::to_string(numbers.top()));
+      resetBufor();
 }
 
 void calculator::calculate()
 {
-   switch(operation)
+    switch(operation)
    {
    case ADD:
-      numbers.push(addNumbers());
-      historyOperation.push_back(" = ");
-      historyOperation.push_back(std::to_string(numbers.top()));
-      historyOperation.push_back(std::to_string(numbers.top()));
-      resetBufor();
+      perform_operation(std::plus<double>{});
       break;
    case SUB:
-      numbers.push(subNumbers());
-      historyOperation.push_back(" = ");
-      historyOperation.push_back(std::to_string(numbers.top()));
-      historyOperation.push_back(std::to_string(numbers.top()));
-      resetBufor();
+      perform_operation(std::minus<double>{});
       break;
    case MULTI:
-      numbers.push(multiNumbers());
-      historyOperation.push_back(" = ");
-      historyOperation.push_back(std::to_string(numbers.top()));
-      historyOperation.push_back(std::to_string(numbers.top()));
-      resetBufor();
+      perform_operation(std::multiplies<double>{});
       break;
    case DIVI:
-      numbers.push(diviNumbers());
-      historyOperation.push_back(" = ");
-      historyOperation.push_back(std::to_string(numbers.top()));
-      historyOperation.push_back(std::to_string(numbers.top()));
-      resetBufor();
+      perform_operation(std::divides<double>{});
       break;
    }
 }
