@@ -17,6 +17,7 @@ int main()
         std::cout<<"3.Mnozenie\n";
         std::cout<<"4.Dzielenie\n";
         std::cout<<"5.WYJSCIE\n";
+        if(calc.checkStatusCalculator()==CHECK_OPERATION) std::cout<<"6.Historia operacji\n";
         std::cout<<"=================\n";
         std::cout<<"WYNIK = "<<calc;
         std::cout<<"=================\n";
