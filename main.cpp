@@ -24,38 +24,39 @@ int main()
 
         double number;
         size_t numberOperation;
-        if(calc.checkStatusCalculator()==START)
+        STATUS statusCalculator = calc.checkStatusCalculator();
+        
+        switch(statusCalculator)
         {
-           do{
+        case START:
+            do{
            std::cin.clear();
            std::cin.sync();
            std::cout<<"Podaj pierwsza liczbe: ";
            std::cin >> number;
            if(std::cin.fail()) std::cout<<"BLAD TRESCI!"<<std::endl;
-         }while(std::cin.fail());
-         calc.enterNumber(number);
-         } else if(calc.checkStatusCalculator()==CHECK_OPERATION)
-         {
+           }while(std::cin.fail());
+           calc.enterNumber(number);
+           break;
+        case CHECK_OPERATION:
            do{
            std::cin.clear();
            std::cin.sync();
            std::cout<<"Wybierz operacje: ";
            std::cin >> numberOperation;
            if(std::cin.fail()) std::cout<<"BLAD TRESCI!"<<std::endl;
-        }while(std::cin.fail());
-        calc.enterOperation(numberOperation);
-        } else if(calc.checkStatusCalculator()==INTRODUCTION_NEXT_NUMBER)
-        {
+           }while(std::cin.fail());
+           calc.enterOperation(numberOperation); 
+        case INTRODUCTION_NEXT_NUMBER:
            do{
            std::cin.clear();
            std::cin.sync();
            std::cout<<"Podaj druga liczbe: ";
            std::cin >> number;
            if(std::cin.fail()) std::cout<<"BLAD TRESCI!"<<std::endl;
-        }while(std::cin.fail());
-            
-        calc.enterNumber(number);
-        calc.calculate();
+           }while(std::cin.fail());
+           calc.enterNumber(number); 
+           calc.calculate();
         }
     }
 
