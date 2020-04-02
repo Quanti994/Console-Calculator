@@ -25,7 +25,7 @@ int main()
         double number;
         size_t numberOperation;
         STATUS statusCalculator = calc.checkStatusCalculator();
-        
+
         switch(statusCalculator)
         {
         case START:
@@ -46,7 +46,8 @@ int main()
            std::cin >> numberOperation;
            if(std::cin.fail()) std::cout<<"BLAD TRESCI!"<<std::endl;
            }while(std::cin.fail());
-           calc.enterOperation(numberOperation); 
+           calc.enterOperation(numberOperation);
+           break;
         case INTRODUCTION_NEXT_NUMBER:
            do{
            std::cin.clear();
@@ -55,8 +56,9 @@ int main()
            std::cin >> number;
            if(std::cin.fail()) std::cout<<"BLAD TRESCI!"<<std::endl;
            }while(std::cin.fail());
-           calc.enterNumber(number); 
+           calc.enterNumber(number);
            calc.calculate();
+           break;
         }
     }
 
