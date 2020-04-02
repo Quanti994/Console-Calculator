@@ -4,13 +4,14 @@
 #include <iostream>
 #include <vector>
 
-enum OPERATIONS{ADD=1,SUB=2,MULTI=3,DIVI=4,EXIT=5};
+enum OPERATIONS{ADD=1,SUB=2,MULTI=3,DIVI=4,EXIT=5,HISTORY=6};
 enum STATUS{START=1,CHECK_OPERATION=2,INTRODUCTION_NEXT_NUMBER=3};
 
 class calculator
 {
        std::stack<double>numbers;
        std::vector<std::string>calculatorBufor;
+       std::vector<std::string>historyOperation;
        OPERATIONS operation;
        STATUS calculatorStatus;
     public:
@@ -27,6 +28,7 @@ class calculator
         double multiNumbers();
         double diviNumbers();
         void resetBufor();
+        void showHistoryOperation();
 };
 
 #endif // CALCULATOR_H
