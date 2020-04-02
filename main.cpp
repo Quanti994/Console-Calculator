@@ -36,23 +36,24 @@ int main()
          calc.enterNumber(number);
          } else if(calc.checkStatusCalculator()==CHECK_OPERATION)
          {
-        do{
-        std::cin.clear();
-        std::cin.sync();
-        std::cout<<"Wybierz operacje: ";
-        std::cin >> numberOperation;
-        if(std::cin.fail()) std::cout<<"BLAD TRESCI!"<<std::endl;
+           do{
+           std::cin.clear();
+           std::cin.sync();
+           std::cout<<"Wybierz operacje: ";
+           std::cin >> numberOperation;
+           if(std::cin.fail()) std::cout<<"BLAD TRESCI!"<<std::endl;
         }while(std::cin.fail());
         calc.enterOperation(numberOperation);
         } else if(calc.checkStatusCalculator()==INTRODUCTION_NEXT_NUMBER)
         {
-        do{
-        std::cin.clear();
-        std::cin.sync();
-        std::cout<<"Podaj druga liczbe: ";
-        std::cin >> number;
-        if(std::cin.fail()) std::cout<<"BLAD TRESCI!"<<std::endl;
+           do{
+           std::cin.clear();
+           std::cin.sync();
+           std::cout<<"Podaj druga liczbe: ";
+           std::cin >> number;
+           if(std::cin.fail()) std::cout<<"BLAD TRESCI!"<<std::endl;
         }while(std::cin.fail());
+            
         calc.enterNumber(number);
         calc.calculate();
         }
