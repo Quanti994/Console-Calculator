@@ -3,6 +3,7 @@
 #include <stack>
 #include <iostream>
 #include <vector>
+#include <functional>
 
 enum OPERATIONS{ADD=1,SUB=2,MULTI=3,DIVI=4,EXIT=5,HISTORY=6};
 enum STATUS{START=1,CHECK_OPERATION=2,INTRODUCTION_NEXT_NUMBER=3};
@@ -23,10 +24,8 @@ class calculator
         void calculate();
         friend std::ostream& operator<<(std::ostream& output,calculator &calc);
     private:
-        double addNumbers();
-        double subNumbers();
-        double multiNumbers();
-        double diviNumbers();
+        double binary_operation(std::function<double(double, double)> const& f);
+        void perform_operation(std::function<double(double, double)> const& f);
         void resetBufor();
         void showHistoryOperation();
 };
